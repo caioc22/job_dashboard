@@ -1,46 +1,30 @@
-```markdown
-# Job Scraper App
+# RAG for Job Retrieval using LangChain + Ollama
 
 ## Overview
 
-This is a web application built using [Streamlit](https://streamlit.io/) that scrapes job listings from various job boards using the [JobSpy](https://github.com/speedyapply/JobSpy) Python library. The app provides a user-friendly interface to search for jobs based on keywords and locations, and displays the scraped job data in a table format.
+This project aims to present a useful tool for IT professionals (software engineers, data scientist, and so on...) to search job offers and find out which technical skills are most in demand in the market.
 
-## Features
+This application get jobs dynamically on the main databases (Indeed, Linkedin, Google...), build a vector database using jobs descriptions, then use a local Ollama open-source model to run a Q&A bot allowing the user to chat with this roles - which can be useful for guiding professional development based on current market demands.
 
-- **Job Search**: Search for jobs by keyword and location.
-- **Real-time Results**: View job listings as they are scraped.
-- **Download CSV**: Export the job data to a CSV file for further analysis.
-- **Responsive Layout**: A clean, wide layout with input fields on the left and results on the right.
-- **Top Navigation Bar**: A customizable top navigation bar with buttons for navigation.
+The interface was built in Streamlit, with features like job search, job skills analysis and the chatbot mentioned.
 
 ## How to Use
 
-1. Run the app using `streamlit run app.py`.
-2. Enter a job keyword and location in the input fields.
-3. Click the **Scrape Jobs** button to start the job search.
-4. View the scraped job data in the results section.
-5. Use the **Download CSV** button to save the data to a CSV file.
-
-## Requirements
-
-- Python 3.8+
-- `streamlit`
-- `jobspy`
-- `pandas`
-
-## Installation
-
-Install the required libraries using pip:
-
-```bash
-pip install streamlit jobspy pandas
+If you are using this on WSL and Ollama server is on Windows Host, running the following on Powershell (as Admin):
+```
+netsh interface portproxy add v4tov4 `
+    listenaddress=0.0.0.0 `
+    listenport=11434 `
+    connectaddress=127.0.0.1 `
+    connectport=11434
 ```
 
-## Contributing
+To run the app.py...
 
-Contributions are welcome! If you'd like to add features or improve the app, feel free to open an issue or submit a pull request.
-
-## License
-
-This project is licensed under the MIT License.
-```
+1. Install the dependencies on `requirements.txt` (make sure to use Python 3.8+)
+2. Set up and start Ollama server on the host
+3. Run `streamlit run app.py`
+4. On *Overview* page, analyze job skills and ask to the chatbot for more details about these roles
+5. On *Search* page, enter a job keyword and location in the input fields
+6. Click the **Scrape Jobs** button to start the job search
+7. Select a job offer so you can see it more details
